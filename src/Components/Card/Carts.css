@@ -1,0 +1,40 @@
+.card{
+    width:50%;
+    height:auto;
+    border:1px solid black;
+    margin: 0 auto;
+    margin-top: 5px;
+    padding: 5px;
+    box-sizing:border-box;
+}
+
+.card h2{
+    display: flex;
+}
+
+.card-wrapper{
+    display: block;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-wrapper p{
+    font-style: 15px;
+    margin: 10px 0;
+}
+.ref{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.ref:hover{
+    cursor:pointer;
+}
+
+@media screen and (max-width:600px){
+    .card{
+        width:90%;
+    }
+}

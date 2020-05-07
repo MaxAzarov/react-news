@@ -1,0 +1,76 @@
+section.settings-wrapper{
+    margin: 0 auto;
+    background:rgba(246, 246, 239,0.4);
+    padding-bottom: 10px;
+    width:80%;
+}
+
+.settings-wrapper p:first-child{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-style: 16px;
+    font-family: Verdana,Geneva,sans-serif;
+}
+
+.selectRow{
+    display: flex;
+    margin: 1rem;
+}
+
+.selectRow label{
+    width:50%;
+    text-align: right;
+}
+.selectRow select{
+    margin-left: 20px;
+}
+fieldset{
+    border:none;
+}
+
+select{
+    color: #5c5c5c;
+}
+
+input[type=checkbox]{
+    display: flex;
+    align-self: center;
+    margin-left: 5px;
+}
+.search{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.apply{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px auto;
+    padding: 10px 16px;
+    border: 0 solid #ccc;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #ff742b;
+    font-size: 14px;
+    outline:none;
+}
+
+.apply:hover{
+    cursor:pointer;
+}
+
+.useful-links ul{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    cursor:crosshair;
+}
+
+.link{
+    text-decoration: none;
+    color:black;
+}
+

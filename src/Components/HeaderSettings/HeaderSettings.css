@@ -1,0 +1,23 @@
+.header-settings{
+    height:75px;
+    background-color:#ff742b;
+    width:100%;
+    display: flex;
+    justify-content: space-around;
+  }
+.settings-news,.back{
+    display: flex;
+    align-self: center;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    width:60%;
+}
+
+.header-settings-main{
+    text-decoration: none;
+    display: flex;
+    align-self: center;
+    color: black;
+}
