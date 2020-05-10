@@ -4,15 +4,20 @@ export function getNews() {
       "https://newsapi.org/v2/sources?apiKey=d4d25c941a0f4f7592b7052402eba379"
     );
     const data = await response.json();
-    const chunk = data.sources.slice(0, 10);
+    const chunk = data.sources.slice(0, 20);
     dispatch(ReceivedData(chunk));
-    console.log(data);
+    dispatch(SetLoading(false));
   };
 }
 
 export const postInfo = (datanews) => ({
   type: "NEWS_INFO",
   payload: datanews,
+});
+
+export const SetLoading = (value) => ({
+  type: "SET_LOADING",
+  payload: value,
 });
 
 export const ReceivedData = (data) => ({

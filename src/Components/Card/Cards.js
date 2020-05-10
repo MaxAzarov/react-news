@@ -7,13 +7,6 @@ import SearchParams from "../SearchParams/SearchParams";
 import { getNews, postInfo } from "./../redux/actions/actions";
 import Downloading from "../Downloading/Downloading";
 class Cards extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      NewsLength: 0,
-    };
-  }
-
   async componentDidMount() {
     this.props.getNews();
   }
@@ -26,8 +19,10 @@ class Cards extends React.Component {
   render() {
     let cards; // length of received data and all cards;
     if (this.props.data) {
+      console.log(this.props.data);
       cards = this.props.data.map((article, index) => {
         const { description, url, category } = article;
+
         return (
           <div
             className="card"
@@ -41,11 +36,10 @@ class Cards extends React.Component {
         );
       });
     }
-    console.log(cards.length);
     return (
       <div className="card-wrapper">
-        <SearchParams amountOfValues={this.state.NewsLength} />
-        {cards == null ? <Downloading></Downloading> : cards}
+        <SearchParams amountOfValues={cards.length} />
+        {this.props.loading ? <Downloading /> : cards}
       </div>
     );
   }
@@ -53,6 +47,7 @@ class Cards extends React.Component {
 const mapStateToProps = (state) => {
   return {
     data: state.data,
+    loading: state.loading,
   };
 };
 

@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  loading: true,
   Currentamount: "10",
   publications: "Stories",
   periods: "Most recent",
@@ -18,6 +19,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     case "NEWS_INFO":
