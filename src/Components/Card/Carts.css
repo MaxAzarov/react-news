@@ -6,6 +6,7 @@
     margin-top: 5px;
     padding: 5px;
     box-sizing:border-box;
+    box-shadow:1px 1px 2px 1px #000;
 }
 
 .card h2{
@@ -26,7 +27,6 @@
 }
 .ref{
     display: flex;
-    justify-content:flex-end;
 }
 
 .ref:hover{

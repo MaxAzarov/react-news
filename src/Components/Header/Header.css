@@ -18,9 +18,6 @@ header{
     width:50%;
     height:40px;
     box-sizing: border-box;
-  }
-  
-  .input-title{
     display: flex;
     align-self: center;
     background: url(https://img.icons8.com/ios/50/000000/search--v1.png) no-repeat scroll 5px 5px;

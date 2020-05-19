@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./Settings.css";
 import "./../UsefulLinks/UsefulLinks";
 import UsefulLinks from "./../UsefulLinks/UsefulLinks";
-import { ApplyNewSettings } from "./../redux/actions/actions";
+import { ApplyNewSettings } from "./../../redux/actions/actions";
 
 class Settings extends Component {
   state = {

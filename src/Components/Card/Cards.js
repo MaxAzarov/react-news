@@ -4,38 +4,42 @@ import { withRouter } from "react-router";
 
 import "./Carts.css";
 import SearchParams from "../SearchParams/SearchParams";
-import { getNews, postInfo } from "./../redux/actions/actions";
+import { getNews } from "./../../redux/actions/actions";
 import Downloading from "../Downloading/Downloading";
 class Cards extends React.Component {
   async componentDidMount() {
     this.props.getNews();
   }
 
-  detailsHandler(...info) {
-    this.props.postInfo(info);
-    this.props.history.push(`${info[0]}`);
+  detailsHandler(id) {
+    this.props.history.push(`${id}`);
   }
 
   render() {
-    let cards; // length of received data and all cards;
-    if (this.props.data) {
-      console.log(this.props.data);
-      cards = this.props.data.map((article, index) => {
-        const { description, url, category } = article;
+    let cards;
+    // const array1 = [
+    //   { title: "title", body: "body" },
+    //   { title: "title2", body: "body2" },
+    // ];
 
+    // console.log(array1.includes(2));
+    // console.log(array1.filter((item) => item.title.includes("")));
+    if (this.props.data) {
+      cards = this.props.data.map((article, index) => {
+        const { title, body, id } = article;
         return (
           <div
             className="card"
             key={index}
-            onClick={() => this.detailsHandler(description, url, category)}
+            onClick={() => this.detailsHandler(id)}
           >
-            <h6 className="ref">Catagory: {category}</h6>
-            <p>{description}</p>
-            <p>More: {url}</p>
+            <h6 className="ref">Title: {title}</h6>
+            <p>{body}</p>
           </div>
         );
       });
     }
+
     return (
       <div className="card-wrapper">
         <SearchParams amountOfValues={cards.length} />
@@ -54,7 +58,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getNews: () => dispatch(getNews()),
-    postInfo: (...datanews) => dispatch(postInfo(...datanews)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Cards));

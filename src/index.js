@@ -11,8 +11,8 @@ import Header from "./Components/Header/Header";
 import Carts from "./Components/Card/Cards";
 import Settings from "./Components/Settings/Settings";
 import HeaderSettings from "./Components/HeaderSettings/HeaderSettings";
-import reducer from "./Components/redux/reducers/reducer";
-import InfoDetails from "./Components/InfoDetails/InfoDetails";
+import reducer from "./redux/reducers/reducer";
+import InfoDetails from "./Components/CardInfo/CardInfo";
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 

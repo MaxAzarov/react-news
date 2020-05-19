@@ -1,3 +1,11 @@
+import {
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_START,
+  FETCH_DATA_FAILURE,
+  APPLY_NEW_SETTINGS,
+  SET_INPUT_SEARCH_TEXT,
+} from "./../actionsTypes/actionsTypes";
+
 const initialState = {
   data: [],
   loading: true,
@@ -13,32 +21,25 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_NEWS":
-      return { ...state };
-    case "RECEIVE_NEWS":
+    case FETCH_DATA_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        data2: action.payload,
       };
 
-    case "SET_LOADING":
+    case FETCH_DATA_START:
       return {
         ...state,
         loading: action.payload,
       };
 
-    case "NEWS_INFO":
-      if (action.payload.length > 0) {
-        return {
-          ...state,
-          newsInfo: action.payload,
-        };
-      } else {
-        return { ...state };
-      }
+    case FETCH_DATA_FAILURE:
+      return {
+        ...state,
+        failure: action.payload,
+      };
 
-    case "RECEIVED_NEW_SETTINGS":
-      console.log(action.payload);
+    case APPLY_NEW_SETTINGS:
       const {
         Currentamount,
         publications,
@@ -57,6 +58,15 @@ const reducer = (state = initialState, action) => {
         storySearch,
         AuthorSearch,
         style,
+      };
+
+    case SET_INPUT_SEARCH_TEXT:
+      return {
+        ...state,
+        data: [
+          ...state.data2.filter((item) => item.title.includes(action.payload)),
+        ],
+        inputText: action.payload,
       };
 
     default:
