@@ -29,6 +29,7 @@ header{
   }
   
   .input-title::placeholder{
+    color:black;
     font-style:italic;
     font-size: 20px;
   }

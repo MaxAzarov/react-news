@@ -1,7 +1,8 @@
 import React from "react";
-import "./Header.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
+import "./Header.css";
 import { setInputSearchText } from "./../../redux/actions/actions";
 function Header(props) {
   return (

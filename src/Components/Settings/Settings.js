@@ -9,21 +9,18 @@ import { ApplyNewSettings } from "./../../redux/actions/actions";
 class Settings extends Component {
   state = {
     style: "default",
-    amounts: [10, 20, 30, 40, 50],
-    Currentamount: "10",
-    publications: "Stories",
-    periods: "Most recent",
-    time: "Forever",
-    storySearch: false,
-    AuthorSearch: false,
+    amounts: [20, 30, 40, 50],
+    amount: 20,
+    storySearch: true,
+    TitleSearch: true,
   };
   render() {
-    console.log(this.state);
+    const style = this.props.style === "default" ? "white" : "#00000033";
+    document.body.style.backgroundColor = `${style}`;
     return (
       <>
         <section className="settings-wrapper">
           <p>Settings</p>
-
           <div className="display-options">
             <p>Display-options</p>
             <div className="selectRow">
@@ -31,7 +28,7 @@ class Settings extends Component {
               <select
                 name="style"
                 onChange={(e) => this.setState({ style: e.target.value })}
-                value={this.state.style}
+                defaultValue={this.props.style}
               >
                 <option value="default">Default</option>
                 <option value="experimental">Experimental</option>
@@ -42,10 +39,8 @@ class Settings extends Component {
               <label>Amount of news</label>
               <select
                 name="amount"
-                onChange={(e) =>
-                  this.setState({ Currentamount: e.target.value })
-                }
-                value={this.state.amount}
+                onChange={(e) => this.setState({ amount: e.target.value })}
+                defaultValue={this.props.amount}
               >
                 {this.state.amounts.map((amount, id) => {
                   return (
@@ -57,66 +52,25 @@ class Settings extends Component {
               </select>
             </div>
           </div>
-
-          <div className="selectRow">
-            <label>Default type</label>
-            <select
-              name="Publications"
-              id=""
-              onChange={(e) => this.setState({ publications: e.target.value })}
-            >
-              <option value="Stories">Stories</option>
-              <option value="All">All</option>
-              <option value="Comments">Comments</option>
-            </select>
-          </div>
-
-          <div className="selectRow">
-            <label>Default type</label>
-            <select
-              name="periods"
-              id=""
-              onChange={(e) => this.setState({ periods: e.target.value })}
-            >
-              <option value="Most recent">Most recent</option>
-              <option value="Most popular">Most popular first</option>
-            </select>
-          </div>
-
-          <div className="selectRow">
-            <label>Default data range</label>
-            <select
-              name="time"
-              id="time"
-              value={this.state.time}
-              onChange={(e) => this.setState({ time: e.target.value })}
-            >
-              <option value="Forever">Forever</option>
-              <option value="Last 24h">Last 24h</option>
-              <option value="Last week">Last week</option>
-            </select>
-          </div>
-
           <label className="search">
             Use the story text for search
             <input
               type="checkbox"
-              checked={this.state.storySearch}
               className="storyForSearch"
+              defaultChecked={this.props.storySearch}
               onChange={() =>
                 this.setState({ storySearch: !this.state.storySearch })
               }
             />
           </label>
-
           <label className="search">
-            Use the author's username for search
+            Use the title for search
             <input
               type="checkbox"
-              checked={this.state.AuthorSearch}
               className="usernameForSearch"
+              defaultChecked={this.props.storySearch}
               onChange={() =>
-                this.setState({ AuthorSearch: !this.state.AuthorSearch })
+                this.setState({ TitleSearch: !this.state.TitleSearch })
               }
             />
           </label>
@@ -141,4 +95,13 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Settings);
+const mapStateToProps = (state) => {
+  return {
+    style: state.style,
+    amount: state.amount,
+    storySearch: state.storySearch,
+    TitleSearch: state.TitleSearch,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

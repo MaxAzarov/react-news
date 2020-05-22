@@ -5,22 +5,22 @@ export default function UsefulLinks() {
     <div className="useful-links">
       <ul>
         <li>
-          <Link to="about" className="link">
+          <Link to="/about" className="link">
             About
           </Link>
         </li>
         <li>
-          <Link to="settings" className="link">
+          <Link to="/settings" className="link">
             Settings
           </Link>
         </li>
-        <li>
-          <Link to="help" className="link">
+        {/* <li>
+          <Link to="/help" className="link">
             Help
           </Link>
-        </li>
+        </li> */}
         <li>
-          <Link to="api-documentation" className="link">
+          <Link to="/api-documentation" className="link">
             Api Documentation
           </Link>
         </li>

@@ -1,29 +1,14 @@
-.searchparams{
-    display: grid;
-    justify-self: center;
-    justify-items: center;
-    grid-template-rows: 30px;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: center;
+.searchParams{
+   display: flex;
+   justify-content: space-between;
+   margin: 0 auto;
+   width:50%;
 }
 
-.SortParams{
-    display: flex;
+.searchParams p{
+    font-weight: 700;
 }
 
-select{
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-span{
-    display: grid;
-    justify-self: start;
-    justify-items: start;
-    align-items: start;
-    text-align-last: left;
-}
 
 @media screen and (max-width: 600px) {
     header{

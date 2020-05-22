@@ -4,17 +4,20 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import "./index.css";
 import Header from "./Components/Header/Header";
-import Carts from "./Components/Card/Cards";
+import Carts from "./Components/Cards/Cards";
 import Settings from "./Components/Settings/Settings";
 import HeaderSettings from "./Components/HeaderSettings/HeaderSettings";
 import reducer from "./redux/reducers/reducer";
 import InfoDetails from "./Components/CardInfo/CardInfo";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import ApiDocumentation from "./Components/ApiDocumentation/ApiDocumentation";
+import About from "./Components/About/About";
 
-const store = createStore(reducer, applyMiddleware(logger, thunk));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,6 +28,20 @@ ReactDOM.render(
           <Settings></Settings>
         </Route>
 
+        <Route path="/api-documentation" exact>
+          <>
+            <HeaderSettings></HeaderSettings>
+            <ApiDocumentation></ApiDocumentation>
+          </>
+        </Route>
+
+        <Route path="/about" exact>
+          <>
+            <HeaderSettings></HeaderSettings>
+            <About></About>
+          </>
+        </Route>
+
         <Route path="/:id" exact>
           <HeaderSettings></HeaderSettings>
           <InfoDetails></InfoDetails>
@@ -33,7 +50,9 @@ ReactDOM.render(
         <Route path="/" exact>
           <>
             <Header></Header>
-            <Carts></Carts>
+            <ErrorBoundary>
+              <Carts></Carts>
+            </ErrorBoundary>
           </>
         </Route>
       </Switch>

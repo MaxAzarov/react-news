@@ -4,19 +4,17 @@ import {
   FETCH_DATA_FAILURE,
   APPLY_NEW_SETTINGS,
   SET_INPUT_SEARCH_TEXT,
+  INCREASE_AMOUNT_OF_CARDS,
 } from "./../actionsTypes/actionsTypes";
 
 const initialState = {
   data: [],
   loading: true,
-  Currentamount: "10",
-  publications: "Stories",
-  periods: "Most recent",
-  time: "Forever",
-  storySearch: false,
-  AuthorSearch: false,
+  storySearch: true,
+  TitleSearch: true,
   style: "default",
   newsInfo: [],
+  amount: 20,
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,22 +39,22 @@ const reducer = (state = initialState, action) => {
 
     case APPLY_NEW_SETTINGS:
       const {
-        Currentamount,
+        amount,
         publications,
         periods,
         time,
         storySearch,
-        AuthorSearch,
+        TitleSearch,
         style,
       } = action.payload[0];
       return {
         ...state,
-        Currentamount,
+        amount,
         publications,
         periods,
         time,
         storySearch,
-        AuthorSearch,
+        TitleSearch,
         style,
       };
 
@@ -64,9 +62,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         data: [
-          ...state.data2.filter((item) => item.title.includes(action.payload)),
+          ...state.data2.filter(
+            (item) =>
+              (state.TitleSearch && item.title.includes(action.payload)) ||
+              (state.storySearch && item.body.includes(action.payload))
+          ),
         ],
         inputText: action.payload,
+      };
+
+    case INCREASE_AMOUNT_OF_CARDS:
+      return {
+        ...state,
+        amount: state.amount + 20,
       };
 
     default:
